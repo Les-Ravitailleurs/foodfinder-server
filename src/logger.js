@@ -5,6 +5,7 @@ const logger = createLogger({
   format: format.combine(format.timestamp(), format.simple()),
   transports: [
     new transports.Console({
+      level: "info",
       format: format.combine(
         format.timestamp(),
         format.colorize(),
