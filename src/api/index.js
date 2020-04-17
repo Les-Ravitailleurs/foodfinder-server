@@ -7,6 +7,8 @@ const launchAPI = () => {
   const app = express();
   const port = config.API_PORT;
 
+  app.use(express.json());
+
   app.use("/api", router);
 
   app.listen(port, () => {

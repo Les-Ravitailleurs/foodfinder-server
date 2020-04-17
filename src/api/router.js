@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const homeController = require("./controllers/home");
+const poolController = require("./controllers/pool");
 
-router.get("/", homeController.home);
+router.post("/pool", poolController.createPool);
 
 module.exports = router;
