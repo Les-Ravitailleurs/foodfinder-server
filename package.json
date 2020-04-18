@@ -19,7 +19,8 @@
     "dev": "nodemon src/index.js",
     "db:migrate": "sequelize-cli db:migrate",
     "db:migrate:undo": "sequelize-cli db:migrate:undo",
-    "db:seed": "sequelize-cli db:seed:all"
+    "db:seed": "sequelize-cli db:seed:all",
+    "build:front": "rm -rf src/app-desktop && cd app && yarn build && cp -r build ../src/app-desktop"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

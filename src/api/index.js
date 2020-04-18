@@ -1,15 +1,23 @@
-const logger = require("../logger");
 const express = require("express");
-const config = require("../config");
-const router = require("./router");
+const path = require("path");
 const cors = require("cors");
+
+const logger = require("../logger");
+const Config = require("../config");
+const router = require("./router");
 
 const launchAPI = () => {
   const app = express();
-  const port = config.API_PORT;
+  const port = Config.API_PORT;
 
   app.use(cors());
   app.use(express.json());
+
+  // On prod, we want to serve
+  // the app through express
+  if (Config.ENV === "production") {
+    app.use(express.static(path.join(__dirname, "..", "app-desktop")));
+  }
 
   app.use("/api", router);
 
