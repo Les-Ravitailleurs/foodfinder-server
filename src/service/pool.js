@@ -1,9 +1,10 @@
 const { Pool, Donation } = require("../db");
 
-const createPool = ({ name, email }) =>
+const createPool = ({ poolName, creatorName, creatorEmail }) =>
   Pool.create({
-    creatorName: name,
-    creatorEmail: email,
+    creatorName,
+    creatorEmail,
+    poolName,
   });
 
 const getPool = async (poolId) => {

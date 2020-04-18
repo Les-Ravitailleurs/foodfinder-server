@@ -4,6 +4,10 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("pools", {
       id: getIdFieldDef(),
+      poolName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       creatorName: {
         type: Sequelize.STRING,
         allowNull: false,

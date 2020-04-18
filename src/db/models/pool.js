@@ -6,6 +6,7 @@ module.exports = (sequelize, Sequelize) => {
     {
       id: getIdFieldDef(),
       creatorName: Sequelize.STRING,
+      poolName: Sequelize.STRING,
       creatorEmail: Sequelize.STRING,
     },
     {

@@ -14,10 +14,6 @@ module.exports = {
     if (!model || !model.addHook || !idFieldName)
       throw new Error("invalid addIdHooks input");
 
-    function ensureNotCreatingIdHook(record) {
-      if (record._changed[idFieldName])
-        throw new Error("cannot set " + idFieldName);
-    }
     function generateIdHook(record) {
       record[idFieldName] = nanoid();
     }
@@ -26,7 +22,6 @@ module.exports = {
         throw new Error("cannot update " + idFieldName + " field");
     }
 
-    model.addHook("beforeCreate", ensureNotCreatingIdHook);
     model.addHook("beforeCreate", generateIdHook);
     model.addHook("beforeUpdate", ensureNotUpdatingUnmodifiableFieldsHook);
   },

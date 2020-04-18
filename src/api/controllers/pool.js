@@ -4,8 +4,9 @@ const ServicePool = require("../../service/pool");
 
 const createPool = async (req, res) => {
   const schema = Joi.object({
-    name: Joi.string().min(3).max(30).required(),
-    email: Joi.string().email().required(),
+    poolName: Joi.string().min(3).max(30).required(),
+    creatorName: Joi.string().min(3).max(30).required(),
+    creatorEmail: Joi.string().email().required(),
   });
   const { value, error } = schema.validate(req.body);
 
