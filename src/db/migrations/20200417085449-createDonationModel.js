@@ -2,13 +2,26 @@ const { getIdFieldDef } = require("../helpers");
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("pools", {
+    return queryInterface.createTable("donations", {
       id: getIdFieldDef(),
-      creatorName: {
+      poolId: {
+        type: Sequelize.STRING(21),
+        references: {
+          model: "pools",
+          key: "id",
+        },
+        allowNull: false,
+      },
+      amount: { type: Sequelize.INTEGER, allowNull: false },
+      stripePaymentIntentId: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      creatorEmail: {
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -27,6 +40,6 @@ module.exports = {
     });
   },
   down: (queryInterface) => {
-    return queryInterface.dropTable("pools");
+    return queryInterface.dropTable("donations");
   },
 };

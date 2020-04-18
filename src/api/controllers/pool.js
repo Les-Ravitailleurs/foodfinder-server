@@ -1,12 +1,24 @@
-const db = require("../../db");
+const Joi = require("@hapi/joi");
+
+const ServicePool = require("../../service/pool");
 
 const createPool = async (req, res) => {
-  console.log(req.body);
-  const newPool = await db.Pool.create({
-    creatorName: "No12",
-    creatorEmail: "noe.malzieu@gmail.com",
+  const schema = Joi.object({
+    name: Joi.string().min(3).max(30).required(),
+    email: Joi.string().email().required(),
   });
+  const { value, error } = schema.validate(req.body);
+
+  if (error) return res.status(400).json({ error });
+  const newPool = await ServicePool.createPool(value);
   res.json(newPool);
 };
 
-module.exports = { createPool };
+const getPool = async (req, res) => {
+  const { poolId } = req.params;
+  const pool = await ServicePool.getPool(poolId);
+  if (!pool) res.status(404).json({ error: "Pool not found" });
+  res.json(pool);
+};
+
+module.exports = { createPool, getPool };
