@@ -21,6 +21,17 @@ const launchAPI = () => {
 
   app.use("/api", router);
 
+  if (Config.ENV === "production") {
+    app.all("*", (req, res) => {
+      res.sendFile(
+        path.join(__dirname, "..", "app-desktop", "index.html"),
+        (err) => {
+          if (err) res.status(500).send(err);
+        }
+      );
+    });
+  }
+
   app.listen(port, () => {
     logger.info(`API running on port ${port}`);
   });
