@@ -5,8 +5,17 @@ module.exports = (sequelize, Sequelize) => {
     "Pool",
     {
       id: getIdFieldDef(),
-      creatorName: Sequelize.STRING,
-      poolName: Sequelize.STRING,
+      creatorName: { type: Sequelize.STRING, allowNull: false },
+      poolName: { type: Sequelize.STRING, allowNull: true },
+      startAt: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+        allowNull: false,
+      },
+      adminId: {
+        type: Sequelize.STRING(21),
+        allowNull: false,
+      },
       creatorEmail: Sequelize.STRING,
     },
     {

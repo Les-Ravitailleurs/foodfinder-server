@@ -5,13 +5,13 @@ const cors = require("cors");
 const logger = require("../logger");
 const Config = require("../config");
 const router = require("./router");
+const webhooks = require("./webhooks");
 
 const launchAPI = () => {
   const app = express();
   const port = Config.API_PORT;
 
   app.use(cors());
-  app.use(express.json());
 
   // On prod, we want to serve
   // the app through express
@@ -19,6 +19,8 @@ const launchAPI = () => {
     app.use(express.static(path.join(__dirname, "..", "app-desktop")));
   }
 
+  app.use("/webhooks", webhooks);
+  app.use("/api", express.json());
   app.use("/api", router);
 
   if (Config.ENV === "production") {

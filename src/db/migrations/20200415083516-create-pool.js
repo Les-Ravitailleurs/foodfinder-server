@@ -6,7 +6,7 @@ module.exports = {
       id: getIdFieldDef(),
       poolName: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       creatorName: {
         type: Sequelize.STRING,
@@ -14,6 +14,15 @@ module.exports = {
       },
       creatorEmail: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      startAt: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+        allowNull: false,
+      },
+      adminId: {
+        type: Sequelize.STRING(21),
         allowNull: false,
       },
       createdAt: {

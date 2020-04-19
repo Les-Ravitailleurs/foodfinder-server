@@ -14,6 +14,7 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
       },
       amount: { type: Sequelize.INTEGER, allowNull: false },
+      mealCount: { type: Sequelize.INTEGER, allowNull: false },
       stripePaymentIntentId: {
         type: Sequelize.STRING,
         allowNull: false,

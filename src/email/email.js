@@ -12,7 +12,7 @@ const templates = {};
 const getEmailSubject = (templateName) => {
   switch (templateName) {
     case "collecte":
-      return "Merci pour la création de votre collecte !";
+      return "Votre collecte est en ligne";
 
     case "donation":
       return "Merci pour votre donation !";

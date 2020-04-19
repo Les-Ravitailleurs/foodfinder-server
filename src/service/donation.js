@@ -8,12 +8,12 @@ const createDonation = async ({
   charges,
 }) => {
   // Get pool id from metadata
-  const { poolId, donationId } = metadata;
+  const { poolId, donationId, mealCount } = metadata;
   // Get donator email & name from charge
   const charge = charges.data.find((c) => c.captured === true);
   const { email, name } = charge.billing_details;
   logger.info(
-    `Received a donation of amount=${amount} for poolId=${poolId} by name=${name} email=${email}`
+    `Received a donation of mealCount=${mealCount} for poolId=${poolId} by name=${name} email=${email}`
   );
   await Donation.create({
     id: donationId,
@@ -22,6 +22,7 @@ const createDonation = async ({
     amount,
     name,
     email,
+    mealCount,
   });
   return;
 };

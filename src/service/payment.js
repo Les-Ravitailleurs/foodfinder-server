@@ -8,6 +8,7 @@ const createCheckoutSession = async ({ mealCount, name, email, poolId }) => {
     email,
     poolId,
     donationId: nanoid(),
+    mealCount,
   };
   const checkoutSession = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
@@ -31,4 +32,13 @@ const createCheckoutSession = async ({ mealCount, name, email, poolId }) => {
   return { checkoutSessionId: checkoutSession.id };
 };
 
-module.exports = { createCheckoutSession };
+const getStripeEvent = (request) => {
+  const sig = request.headers["stripe-signature"];
+  return stripe.webhooks.constructEvent(
+    request.body,
+    sig,
+    Config.STRIPE_WEBHOOK_KEY
+  );
+};
+
+module.exports = { createCheckoutSession, getStripeEvent };
