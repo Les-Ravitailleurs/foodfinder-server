@@ -1,0 +1,50 @@
+<mjml>
+  <mj-head>
+    <mj-style>
+      .box-shadow { box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08); } .url-filler {width: 50px} @media (max-width:480px) { .url-filler {width: 0px} }
+    </mj-style>
+    <mj-font name="DM Serif Text" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" />
+    <mj-font name="Open Sans" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" />
+
+  </mj-head>
+  <mj-body background-color="#faf8ea">
+    <mj-section>
+      <mj-column>
+
+        <mj-image padding-top="40px" width="200px" src="https://lesravitailleurs.s3.eu-west-3.amazonaws.com/logo.png"></mj-image>
+
+        <mj-text font-size="20px" color="#181818" font-family="DM Serif Text, serif" align="center" padding-top="40px">Merci pour la création de votre collecte&nbsp;!</mj-text>
+
+        <mj-text font-size="14px" color="#181818" font-family="Open Sans, sans-serif" align="center" font-weight="600" padding-top="30px">__NAME__,</mj-text>
+
+        <mj-text font-size="14px" color="#181818" font-family="Open Sans, sans-serif" align="center" padding-top="20px">Nous sommes ravis de te compter dans nos rangs.</mj-text>
+        <mj-text font-size="14px" color="#181818" font-family="Open Sans, sans-serif" align="center" padding-top="20px" line-height="22px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </mj-text>
+
+        <mj-text font-size="17px" color="#181818" font-family="DM Serif Text, serif" align="center" padding-top="40px">Accédez à votre collecte Source Interactive</mj-text>
+
+        <mj-button background-color="#11782E" color="white" font-family="Open Sans, sans-serif" border-radius="8px" href="__LINK__" font-weight="600" font-size="16px" padding-top="30px" height="45px">
+          J'accède à ma collecte
+        </mj-button>
+
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="white" border-radius="14px" css-class="box-shadow">
+      <mj-column>
+        <mj-text font-size="17px" color="#181818" font-family="DM Serif Text, serif" align="center" padding-top="10px" align="center">Partagez la collecte à vos proches</mj-text>
+        <mj-table align="center">
+          <tr style="height: 45px">
+            <th class="url-filler"></th>
+            <th style="width:20px;border-left: 1px solid #EBEBEB; border-top: 1px solid #EBEBEB; border-bottom: 1px solid #EBEBEB;">
+              <img height="auto" src="https://lesravitailleurs.s3.eu-west-3.amazonaws.com/link.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:18px;font-size:13px; margin-left:10px;" />
+            </th>
+            <th style="padding: 0 15px; text-align:left;font-family: Open Sans;color: black; opacity: 0.6;;border-right: 1px solid #EBEBEB; border-top: 1px solid #EBEBEB; border-bottom: 1px solid #EBEBEB;
+"><a class="link" href="__LINK__" style="font-family: Open Sans;color: black;text-decoration: none;">__LINK__</a></th>
+            <th class="url-filler"></th>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
