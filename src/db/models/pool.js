@@ -12,6 +12,10 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: 0,
         allowNull: false,
       },
+      message: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
       adminId: {
         type: Sequelize.STRING(21),
         allowNull: false,

@@ -1,13 +1,18 @@
-const { nanoid } = require("nanoid");
 const Config = require("../config");
 const stripe = require("stripe")(Config.STRIPE_SECRET_KEY);
 
-const createCheckoutSession = async ({ mealCount, name, email, poolId }) => {
+const createCheckoutSession = async ({
+  mealCount,
+  name,
+  email,
+  poolId,
+  donatorName,
+}) => {
   const metadata = {
     name,
     email,
     poolId,
-    donationId: nanoid(),
+    donatorName,
     mealCount,
   };
   const checkoutSession = await stripe.checkout.sessions.create({
@@ -26,7 +31,7 @@ const createCheckoutSession = async ({ mealCount, name, email, poolId }) => {
     payment_intent_data: {
       metadata,
     },
-    success_url: `${Config.BASE_URL}/collecte/${poolId}/merci/${metadata.donationId}`,
+    success_url: `${Config.BASE_URL}/collecte/${poolId}/merci/${mealCount}`,
     cancel_url: `${Config.BASE_URL}/collecte/${poolId}`,
   });
   return { checkoutSessionId: checkoutSession.id };

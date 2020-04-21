@@ -9,13 +9,13 @@ const mailjet = require("node-mailjet").connect(
 );
 const templates = {};
 
-const getEmailSubject = (templateName) => {
+const getEmailSubject = (templateName, data) => {
   switch (templateName) {
     case "collecte":
-      return "Votre collecte est en ligne";
+      return "Votre collecte est en ligne !";
 
     case "donation":
-      return "Merci pour votre donation !";
+      return `${data.__NAME__}, vous venez d'offrir ${data.__MEAL_COUNT__} repas`;
 
     default:
       throw new Error("EMAIL SUBJECT NOT FOUND");
@@ -31,14 +31,14 @@ const sendEmail = async (templateName, to, data) => {
   for (const dataName in data) {
     html = html.replace(new RegExp(dataName, "g"), data[dataName]);
   }
-  const subject = getEmailSubject(templateName);
+  const subject = getEmailSubject(templateName, data);
 
   try {
     await mailjet.post("send", { version: "v3.1" }).request({
       Messages: [
         {
           From: {
-            Email: "collecte@lesravitailleurs.org",
+            Email: "contact@lesravitailleurs.org",
             Name: "Les Ravitailleurs",
           },
           To: [
@@ -78,11 +78,6 @@ const getEmailTemplate = async (template) => {
   const compiled = templates[template] || (await loadEmailTemplate(template));
   return compiled;
 };
-
-sendEmail("collecte", "noe.malzieu@gmail.com", {
-  __LINK__: "https://www.lesravitailleurs.org/cagnotte/A1b1C2z4r1t6",
-  __NAME__: "Olivier",
-});
 
 module.exports = {
   sendEmail,

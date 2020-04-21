@@ -1,18 +1,25 @@
 const Joi = require("@hapi/joi");
 
 const ServicePool = require("../../service/pool");
+const ServiceDonation = require("../../service/donation");
 
-const createPool = async (req, res) => {
+const createOrEditPool = async (req, res) => {
   const schema = Joi.object({
-    poolName: Joi.string().min(3).max(30),
-    creatorName: Joi.string().min(3).max(30).required(),
+    poolId: Joi.string().allow(null).allow("").optional(),
+    adminId: Joi.string().allow(null).allow("").optional(),
+    message: Joi.string().allow(null).allow("").optional(),
+    creatorName: Joi.string().min(2).max(30).required(),
     creatorEmail: Joi.string().email().required(),
   });
   const { value, error } = schema.validate(req.body);
 
   if (error) return res.status(400).json({ error });
-  const newPool = await ServicePool.createPool(value);
-  res.json(newPool);
+  try {
+    const newPool = await ServicePool.createOrEditPool(value);
+    res.json(newPool);
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
 };
 
 const getPool = async (req, res) => {
@@ -26,7 +33,13 @@ const getPool = async (req, res) => {
     pool.setDataValue("admin", false);
     pool.setDataValue("adminId", undefined);
   }
+  const donations = await ServiceDonation.getPoolDonations(poolId);
+  const donationsNames = donations.map((d) => d.name);
+  if (pool.startAt > 0) {
+    donationsNames.unshift(pool.creatorName);
+  }
+  pool.setDataValue("donationsNames", donationsNames);
   res.json(pool);
 };
 
-module.exports = { createPool, getPool };
+module.exports = { createOrEditPool, getPool };

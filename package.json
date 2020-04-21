@@ -14,6 +14,7 @@
     "node-mailjet": "^3.3.1",
     "pg": "^8.0.2",
     "sequelize": "^5.21.6",
+    "slugify": "^1.4.0",
     "stripe": "^8.44.0",
     "winston": "^3.2.1"
   },

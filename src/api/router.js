@@ -4,7 +4,7 @@ const router = express.Router();
 const poolController = require("./controllers/pool");
 const donationController = require("./controllers/donation");
 
-router.post("/pool", poolController.createPool);
+router.post("/pool", poolController.createOrEditPool);
 router.get("/pool/:poolId", poolController.getPool);
 
 router.get("/donation/:donationId", donationController.getDonation);

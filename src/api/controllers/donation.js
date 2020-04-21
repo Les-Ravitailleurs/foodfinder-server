@@ -6,7 +6,7 @@ const ServicePayment = require("../../service/payment");
 
 const donate = async (req, res) => {
   const schema = Joi.object({
-    // name: Joi.string().min(3).max(30).required(),
+    donatorName: Joi.string().min(1).max(30).required(),
     mealCount: Joi.number().integer().required(),
     poolId: Joi.string().required(),
   });

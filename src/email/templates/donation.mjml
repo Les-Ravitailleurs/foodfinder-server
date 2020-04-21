@@ -16,27 +16,22 @@
 
 
 
-        <mj-text font-size="23px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="40px">Bienvenue chez les Ravitailleurs</mj-text>
+        <mj-text font-size="23px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="40px">Merci pour eux.</mj-text>
 
         <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" font-weight="600" padding-top="30px">__NAME__,</mj-text>
 
-        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px">Nous sommes ravis de vous compter dans nos rangs.</mj-text>
-        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px">Si ce n'est pas encore fait, nous vous conseillons de commencer par offrir des premiers repas. Chaque repas compte. Ensuite, vous pouvez partager la collecte à vos proches. Si vous avez besoin d'aide sur quoi que ce soit, répondez à cet email
-          et nous serons ravis de vous aider&nbsp;!
+        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px">Vous venez d'offrir __MEAL_COUNT__ repas aux plus démunis.</mj-text>
+        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px">Concrètement, vous venez d'acheter __PACKAGING_COUNT__ packagings, __BASE_COUNT__ kg de pâtes ou riz, __GREEN_COUNT__ kg de légumes, les Ravitailleurs bénévoles vont transporter ces produits vers les chefs, qui pourront cuisiner des repas. Ils seront ensuite acheminés vers les associations.
         </mj-text>
 
-        <mj-text font-size="18px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="40px">Accédez à votre collecte en tant qu'éditeur&nbsp;:</mj-text>
-
-        <mj-button background-color="#11782E" color="white" font-family="Arial, sans-serif" border-radius="8px" href="__ADMIN_LINK__" font-weight="600" font-size="16px" padding-top="30px" height="45px">
-          J'accède à ma collecte
-        </mj-button>
+        
 
       </mj-column>
     </mj-section>
 
     <mj-section background-color="white" border-radius="14px" css-class="box-shadow">
       <mj-column>
-        <mj-text font-size="18px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="10px" align="center">Partagez la collecte à vos proches</mj-text>
+        <mj-text font-size="18px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="10px" align="center">Partagez la collecte de __POOL_CREATOR_NAME__ à vos proches</mj-text>
         <mj-table align="center">
           <tr style="height: 45px">
             <th class="url-filler"></th>
@@ -52,7 +47,17 @@
     </mj-section>
     <mj-section>
       <mj-column>
-        <mj-text font-size="14px" color="#9f9e96" font-family="Arial, sans-serif" align="center" padding-top="10px" align="center">Vous recevez cet email car vous avez créé une collecte<br/>sur notre site internet.</mj-text>
+        <mj-text font-size="18px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="10px" align="center">Vous aussi, créez votre collecte en 1 clic</mj-text>
+        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px">Le don que vous venez de faire sera comptabilisé dans cette nouvelle collecte. Proposez à vos collègues, amis, proches d'offrir des repas aux plus démunis.
+        </mj-text>
+        <mj-button background-color="#11782E" color="white" font-family="Arial, sans-serif" border-radius="8px" href="__CREATE_LINK__" font-weight="600" font-size="16px" padding-top="30px" height="45px">
+          Je crée une collecte
+        </mj-button>
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-text font-size="14px" color="#9f9e96" font-family="Arial, sans-serif" align="center" padding-top="10px" align="center">Vous recevez cet email car vous avez offer un repas sur<br/>sur notre site internet.</mj-text>
         <mj-text font-size="14px" font-weight="bold" color="#9f9e96" font-family="Arial, sans-serif" align="center" padding-top="10px" align="center">Merci. Chaque repas compte.</mj-text>
       </mj-column>
     </mj-section>
