@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const logger = require("../logger");
 const mjml2html = require("mjml");
 const Config = require("../config");
 
@@ -51,9 +52,9 @@ const sendEmail = async (templateName, to, data) => {
         },
       ],
     });
-    console.log(`Sent Email "${templateName}" to ${to}`);
+    logger.info(`Sent Email "${templateName}" to ${to}`);
   } catch (err) {
-    console.log(
+    logger.error(
       err,
       err && err.response && err.response.body && err.response.body.errors
     );

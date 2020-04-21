@@ -48,7 +48,6 @@ const launchAPI = () => {
         const pool = await ServicePool.getPool(poolId);
         title = `Aidez ${pool.creatorName} !`;
       }
-      console.log(title);
 
       fs.readFile(
         path.join(__dirname, "..", "app-desktop", "index.html"),
@@ -57,13 +56,13 @@ const launchAPI = () => {
           if (err) {
             res.status(500).send(err);
           }
-          // if (title) {
-          //   // Let's replace title !
-          //   data = data.replace(
-          //     "<title>Les ravitailleurs</title>",
-          //     `<title>${title}</title>`
-          //   );
-          // }
+          if (title) {
+            // Let's replace title !
+            data = data.replace(
+              "<title>Les ravitailleurs</title>",
+              `<title>${title}</title>`
+            );
+          }
           res.status(200).send(data);
         }
       );
