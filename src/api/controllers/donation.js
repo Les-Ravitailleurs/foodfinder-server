@@ -32,4 +32,9 @@ const getDonation = async (req, res) => {
   res.send(donation);
 };
 
-module.exports = { donate, getDonation };
+const getDonatorCount = async (req, res) => {
+  const count = await ServiceDonation.getDonatorCount();
+  res.send({ count });
+};
+
+module.exports = { donate, getDonation, getDonatorCount };

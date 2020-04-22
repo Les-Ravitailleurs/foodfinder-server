@@ -25,7 +25,7 @@ const createDonation = async ({
     poolId,
     amount,
     stripeName: name,
-    email,
+    email: email.toLowerCase(),
     mealCount,
     name: donatorName,
   });
@@ -50,4 +50,12 @@ const getDonation = async ({ donationId }) => {
 const getPoolDonations = async (poolId) =>
   Donation.findAll({ where: { poolId }, order: [["createdAt", "ASC"]] });
 
-module.exports = { createDonation, getDonation, getPoolDonations };
+const getDonatorCount = () =>
+  Donation.aggregate("email", "count", { distinct: true });
+
+module.exports = {
+  createDonation,
+  getDonation,
+  getPoolDonations,
+  getDonatorCount,
+};

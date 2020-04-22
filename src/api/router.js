@@ -9,5 +9,6 @@ router.get("/pool/:poolId", poolController.getPool);
 
 router.get("/donation/:donationId", donationController.getDonation);
 router.post("/donation", donationController.donate);
+router.get("/landing", donationController.getDonatorCount);
 
 module.exports = router;
