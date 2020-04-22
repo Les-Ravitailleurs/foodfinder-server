@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const fs = require("fs");
+const Entities = require("html-entities").XmlEntities;
 
 const logger = require("../logger");
 const Config = require("../config");
@@ -9,6 +10,7 @@ const router = require("./router");
 const webhooks = require("./webhooks");
 
 const ServicePool = require("../service/pool");
+const entities = new Entities();
 
 const launchAPI = () => {
   const app = express();
@@ -29,7 +31,7 @@ const launchAPI = () => {
   if (Config.ENV === "production") {
     app.all("*", async (req, res) => {
       let poolId = null;
-      let title = null;
+      let pool = null;
       const regex1 = new RegExp("/collecte/(.*?)/");
       const regex2 = new RegExp("/collecte/(.*?)(\\?|$)");
       if (req.url.startsWith("/collecte/")) {
@@ -45,8 +47,7 @@ const launchAPI = () => {
       }
       if (poolId) {
         // Let's get title from pool name
-        const pool = await ServicePool.getPool(poolId);
-        title = `Aidez ${pool.creatorName} !`;
+        pool = await ServicePool.getPool(poolId);
       }
 
       fs.readFile(
@@ -56,11 +57,29 @@ const launchAPI = () => {
           if (err) {
             res.status(500).send(err);
           }
-          if (title) {
-            // Let's replace title !
+          if (pool && data && data.replace) {
+            const title = entities.encode(
+              `Aidez ${pool.creatorName} à collecter des repas pour les plus démunis`
+            );
             data = data.replace(
-              "<title>Les ravitailleurs</title>",
+              "<title>Les Ravitailleurs</title>",
               `<title>${title}</title>`
+            );
+            data = data.replace(
+              `<meta property="og:title" content="Les Ravitailleurs"/>`,
+              `<meta property="og:title" content="${title}"/>`
+            );
+
+            data = data.replace(
+              `<meta property="og:url" content="https://lesravitailleurs.org/"/>`,
+              `<meta property="og:url" content="${Config.BASE_URL}/collecte/${pool.id}"/>`
+            );
+
+            data = data.replace(
+              `<meta property="og:description" content="Les plus démunis ont besoin, aujourd’hui plus que jamais, d’aide alimentaire."/>`,
+              `<meta property="og:description" content="Les plus démunis ont besoin, aujourd’hui plus que jamais, d’aide alimentaire. ${entities.encode(
+                pool.creatorName
+              )} a créé une collecte pour aider Les Ravitailleurs à cuisiner des milliers de repas pour eux."/> `
             );
           }
           res.status(200).send(data);
