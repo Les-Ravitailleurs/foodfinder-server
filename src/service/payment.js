@@ -19,7 +19,7 @@ const createCheckoutSession = async ({
     payment_method_types: ["card"],
     line_items: [
       {
-        name: "Donation Repas - Les Ravitailleurs",
+        name: "Repas offerts - Les Ravitailleurs",
         amount: Config.MEAL_PRICE * 100,
         currency: "EUR",
         quantity: mealCount,
