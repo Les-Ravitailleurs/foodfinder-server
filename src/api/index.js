@@ -81,6 +81,13 @@ const launchAPI = () => {
                 pool.creatorName
               )} a créé une collecte pour aider Les Ravitailleurs à cuisiner des milliers de repas pour eux."/> `
             );
+
+            if (pool.shareImage) {
+              data = data.replace(
+                `https://lesravitailleurs.s3.eu-west-3.amazonaws.com/ravitailleursShare.jpg`,
+                pool.shareImage
+              );
+            }
           }
           res.status(200).send(data);
         }

@@ -1,4 +1,5 @@
 const { getIdFieldDef, addIdHooks } = require("../helpers");
+const { imgGen } = require("../../imgen");
 
 module.exports = (sequelize, Sequelize) => {
   const Pool = sequelize.define(
@@ -20,6 +21,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING(21),
         allowNull: false,
       },
+      shareImage: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       creatorEmail: Sequelize.STRING,
     },
     {
@@ -28,5 +33,10 @@ module.exports = (sequelize, Sequelize) => {
     }
   );
   addIdHooks(Pool);
+  Pool.addHook("afterCreate", (pool) => {
+    imgGen(pool.id, pool.creatorName).then((shareImage) => {
+      Pool.update({ shareImage }, { where: { id: pool.id } });
+    });
+  });
   return Pool;
 };

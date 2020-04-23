@@ -29,6 +29,10 @@ module.exports = {
         type: Sequelize.STRING(21),
         allowNull: false,
       },
+      shareImage: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
