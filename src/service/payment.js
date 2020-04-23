@@ -19,10 +19,12 @@ const createCheckoutSession = async ({
     payment_method_types: ["card"],
     line_items: [
       {
-        name: "Repas offerts - Les Ravitailleurs",
-        amount: Config.MEAL_PRICE * 100,
+        name: `${mealCount} repas offerts - Les Ravitailleurs`,
+        amount: Config.MEAL_PRICE * 100 * mealCount,
         currency: "EUR",
-        quantity: mealCount,
+        quantity: 1,
+        description:
+          "Votre paiement va directement à notre partenaire Frichti, qui nous met à disposition les produits, sans marge évidemment.\n",
       },
     ],
     customer_email: email,
