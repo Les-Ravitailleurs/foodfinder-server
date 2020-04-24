@@ -19,6 +19,12 @@ const createDonation = async ({
   );
   const pool = await Pool.findByPk(poolId);
   if (!pool) throw new Error("POOL NOT FOUND");
+  const alreadyDonation = await Donation.findOne({
+    where: { stripePaymentIntentId },
+  });
+  if (alreadyDonation) {
+    return logger.warn(`Payment ${stripePaymentIntentId} already received`);
+  }
   await Donation.create({
     id: donationId,
     stripePaymentIntentId,
