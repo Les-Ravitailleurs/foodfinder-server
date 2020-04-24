@@ -58,7 +58,7 @@
     </mj-section>
     <mj-section background-color="#faf8ea">
       <mj-column>
-        <mj-text font-size="14px" color="#9f9e96" font-family="Arial, sans-serif" align="center" padding-top="10px" align="center">Vous recevez cet email car vous avez offer un repas sur<br/>sur notre site internet.</mj-text>
+        <mj-text font-size="14px" color="#9f9e96" font-family="Arial, sans-serif" align="center" padding-top="10px" align="center">Vous recevez cet email car vous avez offert un repas sur<br/>sur notre site internet.</mj-text>
         <mj-text font-size="14px" font-weight="bold" color="#9f9e96" font-family="Arial, sans-serif" align="center" padding-top="10px" align="center">Merci. Chaque repas compte.</mj-text>
       </mj-column>
     </mj-section>
