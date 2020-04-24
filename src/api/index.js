@@ -85,7 +85,7 @@ const launchAPI = () => {
             );
 
             data = data.replace(
-              `<meta name="description" content="Aidez-nous à cuisiner des milliers de repas pour les plus démunis. Des milliers de personnes, en France, ne peuvent plus se nourrir au quotidien. Vous pouvez aider." />`,
+              `<meta name="description" content="Aidez-nous à cuisiner des milliers de repas pour les plus démunis. Des milliers de personnes, en France, ne peuvent plus se nourrir au quotidien. Vous pouvez aider."/>`,
               `<meta name="description" content="${newDescription}" />`
             );
 
