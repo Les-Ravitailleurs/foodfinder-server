@@ -34,9 +34,11 @@ module.exports = (sequelize, Sequelize) => {
   );
   addIdHooks(Pool);
   Pool.addHook("afterCreate", (pool) => {
-    imgGen(pool.id, pool.creatorName).then((shareImage) => {
-      Pool.update({ shareImage }, { where: { id: pool.id } });
-    });
+    imgGen(pool.id, pool.creatorName)
+      .then((shareImage) => {
+        Pool.update({ shareImage }, { where: { id: pool.id } });
+      })
+      .catch(console.log);
   });
   return Pool;
 };
