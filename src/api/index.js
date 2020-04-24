@@ -75,11 +75,18 @@ const launchAPI = () => {
               `<meta property="og:url" content="${Config.BASE_URL}/collecte/${pool.id}"/>`
             );
 
+            const newDescription = `Les plus démunis ont besoin, aujourd’hui plus que jamais, d’aide alimentaire. ${entities.encode(
+              pool.creatorName
+            )} a créé une collecte pour aider Les Ravitailleurs à cuisiner des milliers de repas pour eux.`;
+
             data = data.replace(
-              `<meta property="og:description" content="Les plus démunis ont besoin, aujourd’hui plus que jamais, d’aide alimentaire."/>`,
-              `<meta property="og:description" content="Les plus démunis ont besoin, aujourd’hui plus que jamais, d’aide alimentaire. ${entities.encode(
-                pool.creatorName
-              )} a créé une collecte pour aider Les Ravitailleurs à cuisiner des milliers de repas pour eux."/> `
+              `<meta property="og:description" content="Aidez-nous à cuisiner des milliers de repas pour les plus démunis. Des milliers de personnes, en France, ne peuvent plus se nourrir au quotidien. Vous pouvez aider."/>`,
+              `<meta property="og:description" content="${newDescription}"/>`
+            );
+
+            data = data.replace(
+              `<meta name="description" content="Aidez-nous à cuisiner des milliers de repas pour les plus démunis. Des milliers de personnes, en France, ne peuvent plus se nourrir au quotidien. Vous pouvez aider." />`,
+              `<meta name="description" content="${newDescription}" />`
             );
 
             if (pool.shareImage) {
