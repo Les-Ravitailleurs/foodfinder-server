@@ -1,6 +1,6 @@
 const Config = require("../config");
 const logger = require("../logger");
-const { Donation, Pool } = require("../db");
+const { Donation, Pool, SavedEmail } = require("../db");
 const { sendEmail } = require("../email/email");
 
 const createDonation = async ({
@@ -59,9 +59,13 @@ const getPoolDonations = async (poolId) =>
 const getDonatorCount = () =>
   Donation.aggregate("email", "count", { distinct: true });
 
+const saveEmail = ({ poolId, name, email, mealCount }) =>
+  SavedEmail.create({ poolId, name, email, mealCount });
+
 module.exports = {
   createDonation,
   getDonation,
   getPoolDonations,
   getDonatorCount,
+  saveEmail,
 };

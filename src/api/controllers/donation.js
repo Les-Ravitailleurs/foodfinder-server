@@ -32,4 +32,19 @@ const getDonation = async (req, res) => {
   res.send(donation);
 };
 
-module.exports = { donate, getDonation };
+const saveEmail = async (req, res) => {
+  const schema = Joi.object({
+    email: Joi.string().email().required(),
+    name: Joi.string().required(),
+    poolId: Joi.string().required(),
+    mealCount: Joi.number().integer().required(),
+  });
+  const { value, error } = schema.validate(req.body);
+
+  if (error) return res.status(400).json({ error });
+
+  await ServiceDonation.saveEmail(value);
+  res.send({ message: "Done" });
+};
+
+module.exports = { donate, getDonation, saveEmail };
