@@ -18,6 +18,9 @@ const getEmailSubject = (templateName, data) => {
     case "donation":
       return `${data.__NAME__}, vous venez d'offrir ${data.__MEAL_COUNT__} repas`;
 
+    case "donation_admin":
+      return `${data.__DONATOR_NAME__} vient d'offrir des repas dans votre collecte`;
+
     default:
       throw new Error("EMAIL SUBJECT NOT FOUND");
   }

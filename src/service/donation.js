@@ -1,7 +1,8 @@
 const Config = require("../config");
 const logger = require("../logger");
-const { Donation, Pool, SavedEmail } = require("../db");
+const { Donation, SavedEmail } = require("../db");
 const { sendEmail } = require("../email/email");
+const ServicePool = require("./pool");
 
 const createDonation = async ({
   id: stripePaymentIntentId,
@@ -17,7 +18,7 @@ const createDonation = async ({
   logger.info(
     `Received a donation of mealCount=${mealCount} for poolId=${poolId} by name=${name} email=${email}`
   );
-  const pool = await Pool.findByPk(poolId);
+  const pool = await ServicePool.getPool(poolId, true);
   if (!pool) throw new Error("POOL NOT FOUND");
   const alreadyDonation = await Donation.findOne({
     where: { stripePaymentIntentId },
@@ -44,6 +45,15 @@ const createDonation = async ({
     __POOL_CREATOR_NAME__: pool.creatorName,
     __LINK__: `${Config.BASE_URL}/collecte/${poolId}`,
     __CREATE_LINK__: `${Config.BASE_URL}?collecte=creer`,
+  });
+  sendEmail("donation_admin", pool.creatorEmail, {
+    __DONATOR_NAME__: donatorName,
+    __TOTAL_MEAL_COUNT__:
+      parseInt(pool.getDataValue("mealCount")) + parseInt(mealCount),
+    __MEAL_COUNT__: mealCount,
+    __POOL_CREATOR_NAME__: pool.creatorName,
+    __LINK__: `${Config.BASE_URL}/collecte/${poolId}`,
+    __ADMIN_LINK__: `${Config.BASE_URL}/collecte/${poolId}/admin/${pool.adminId}`,
   });
   return;
 };
