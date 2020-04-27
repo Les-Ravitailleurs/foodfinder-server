@@ -28,7 +28,7 @@
       </mj-column>
       <mj-column width="100%">
 
-        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px" padding-top="30px">Grâce à __DONATOR_NAME__, votre collecte vient de de gagner __MEAL_COUNT__ repas. Bravo et merci, les chefs n’ont plus qu’à faire chauffer les marmites, on leur apporte des produits ! Merci merci merci. Chaque repas compte.
+        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px" padding-top="30px">Grâce à __DONATOR_NAME__, votre collecte vient de gagner __MEAL_COUNT__ repas. Bravo et merci, les chefs n’ont plus qu’à faire chauffer les marmites, on leur apporte des produits ! Merci merci merci. Chaque repas compte.
         </mj-text>
 
         <mj-text font-size="18px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="40px">Accédez à votre collecte en tant qu'éditeur&nbsp;:</mj-text>
