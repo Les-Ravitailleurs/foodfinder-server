@@ -49,7 +49,9 @@ const createDonation = async ({
   sendEmail("donation_admin", pool.creatorEmail, {
     __DONATOR_NAME__: donatorName,
     __TOTAL_MEAL_COUNT__:
-      parseInt(pool.getDataValue("mealCount")) + parseInt(mealCount),
+      parseInt(pool.getDataValue("mealCount")) +
+      pool.startAt +
+      parseInt(mealCount),
     __MEAL_COUNT__: mealCount,
     __POOL_CREATOR_NAME__: pool.creatorName,
     __LINK__: `${Config.BASE_URL}/collecte/${poolId}`,
