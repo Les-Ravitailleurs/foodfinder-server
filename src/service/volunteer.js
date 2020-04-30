@@ -25,7 +25,12 @@ const getDeliveryData = async (volunteerId) => {
   deliveryData = deliveryData.filter((r) => {
     if (r["Tool_ID (livreur)"] === volunteerId)
       livreur = livreur || r["Nom livreur"];
-    return r["Tool_ID (livreur)"] === volunteerId && isInTheFuture(r.Date);
+    return (
+      r["Tool_ID (livreur)"] === volunteerId &&
+      r["Tournee_ID"] &&
+      r["Planning_ID"] &&
+      isInTheFuture(r.Date)
+    );
   });
 
   const tasks = deliveryData.map((row) => ({
