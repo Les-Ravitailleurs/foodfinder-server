@@ -23,11 +23,6 @@ const createCheckoutSession = async ({
         amount: Config.MEAL_PRICE * 100 * mealCount,
         currency: "EUR",
         quantity: 1,
-        description:
-          "Votre paiement va directement à notre partenaire Frichti, qui nous met à disposition les produits, sans marge évidemment.",
-        images: [
-          "https://lesravitailleurs.s3.eu-west-3.amazonaws.com/stripeRavitailleursXFrichti.jpg",
-        ],
       },
     ],
     customer_email: email,
