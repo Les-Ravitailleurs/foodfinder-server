@@ -35,9 +35,10 @@ const generateTaxReceipt = ({
     const fullpath = `file:///${__dirname}/model/${taxReceiptId}.html`;
     const outPath = `${__dirname}/model/${taxReceiptId}.pdf`;
 
-    const stream = wkhtmltopdf(fullpath, { pageSize: "letter" }).pipe(
-      fs.createWriteStream(outPath)
-    );
+    const stream = wkhtmltopdf(fullpath, {
+      pageSize: "letter",
+      enableLocalFileAccess: true,
+    }).pipe(fs.createWriteStream(outPath));
     stream.on("finish", () => {
       fs.unlinkSync(htmlFilePath);
       resolve(outPath);
