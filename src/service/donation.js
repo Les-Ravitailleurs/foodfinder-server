@@ -1,8 +1,10 @@
 const Config = require("../config");
 const logger = require("../logger");
-const { Donation, SavedEmail } = require("../db");
+const { Donation, SavedEmail, sequelize } = require("../db");
 const { sendEmail } = require("../email/email");
 const ServicePool = require("./pool");
+const ServiceTaxReceipt = require("./taxReceipt/index");
+const moment = require("moment-timezone");
 
 const createDonation = async ({
   id: stripePaymentIntentId,
@@ -11,7 +13,15 @@ const createDonation = async ({
   charges,
 }) => {
   // Get pool id from metadata
-  const { poolId, donationId, mealCount, donatorName } = metadata;
+  const {
+    poolId,
+    donationId,
+    mealCount,
+    donatorName,
+    donatorAddress,
+    hideDonatorName,
+    taxReceiptId,
+  } = metadata;
   // Get donator email & name from charge
   const charge = charges.data.find((c) => c.captured === true);
   const { email, name } = charge.billing_details;
@@ -26,7 +36,18 @@ const createDonation = async ({
   if (alreadyDonation) {
     return logger.warn(`Payment ${stripePaymentIntentId} already received`);
   }
-  await Donation.create({
+  const year = moment().tz("Europe/Paris").format("YY");
+  const receiptCountForYearQuery = await sequelize.query(
+    `SELECT COUNT(id) FROM donations WHERE "taxReceiptNumber" != '' AND date_part('year', "createdAt") = date_part('year', CURRENT_DATE);`
+  );
+  const receiptCountForYear = parseInt(
+    receiptCountForYearQuery[0][0].count,
+    10
+  );
+  const number = `0000${receiptCountForYear + 1}`.slice(-5);
+  const taxReceiptNumber = `CO${year}-${number}`;
+  // Create tax receipt with id
+  const donation = await Donation.create({
     id: donationId,
     stripePaymentIntentId,
     poolId,
@@ -35,28 +56,57 @@ const createDonation = async ({
     email: email.toLowerCase(),
     mealCount,
     name: donatorName,
+    donatorAddress,
+    hideDonatorName,
+    taxReceiptId,
+    taxReceiptNumber,
   });
-  sendEmail("donation", email, {
-    __NAME__: donatorName,
-    __MEAL_COUNT__: mealCount,
-    __PACKAGING_COUNT__: mealCount,
-    __BASE_COUNT__: (mealCount * 0.25).toFixed(1),
-    __GREEN_COUNT__: (mealCount * 0.15).toFixed(1),
-    __POOL_CREATOR_NAME__: pool.creatorName,
-    __LINK__: `${Config.BASE_URL}/collecte/${poolId}`,
-    __CREATE_LINK__: `${Config.BASE_URL}?collecte=creer`,
+
+  logger.info(
+    `Generating tax receipt with number=${taxReceiptNumber} and id=${taxReceiptId}...`
+  );
+
+  const {
+    taxReceiptURL,
+    taxReceiptBase64,
+  } = await ServiceTaxReceipt.generateTaxReceiptAndUpload({
+    taxReceiptId,
+    taxReceiptNumber,
+    donatorName,
+    donatorAddress,
+    amount,
   });
-  sendEmail("donation_admin", pool.creatorEmail, {
-    __DONATOR_NAME__: donatorName,
-    __TOTAL_MEAL_COUNT__:
-      parseInt(pool.getDataValue("mealCount")) +
-      pool.startAt +
-      parseInt(mealCount),
-    __MEAL_COUNT__: mealCount,
-    __POOL_CREATOR_NAME__: pool.creatorName,
-    __LINK__: `${Config.BASE_URL}/collecte/${poolId}`,
-    __ADMIN_LINK__: `${Config.BASE_URL}/collecte/${poolId}/admin/${pool.adminId}`,
-  });
+  await donation.update({ taxReceiptURL });
+  sendEmail(
+    "donation",
+    email,
+    {
+      __NAME__: donatorName,
+      __MEAL_COUNT__: mealCount,
+      __PACKAGING_COUNT__: mealCount,
+      __BASE_COUNT__: (mealCount * 0.25).toFixed(1),
+      __GREEN_COUNT__: (mealCount * 0.15).toFixed(1),
+      __POOL_CREATOR_NAME__: pool.creatorName,
+      __LINK__: `${Config.BASE_URL}/collecte/`,
+      // __CREATE_LINK__: `${Config.BASE_URL}?collecte=creer`,
+    },
+    {
+      ContentType: "application/pdf",
+      Filename: `ravitailleurs_recu_fiscal_${taxReceiptNumber}.pdf`,
+      Base64Content: taxReceiptBase64,
+    }
+  );
+  // sendEmail("donation_admin", pool.creatorEmail, {
+  //   __DONATOR_NAME__: donatorName,
+  //   __TOTAL_MEAL_COUNT__:
+  //     parseInt(pool.getDataValue("mealCount")) +
+  //     pool.startAt +
+  //     parseInt(mealCount),
+  //   __MEAL_COUNT__: mealCount,
+  //   __POOL_CREATOR_NAME__: pool.creatorName,
+  //   __LINK__: `${Config.BASE_URL}/collecte/`,
+  //   // __ADMIN_LINK__: `${Config.BASE_URL}/collecte/${poolId}/admin/${pool.adminId}`,
+  // });
   return;
 };
 

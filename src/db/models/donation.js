@@ -27,6 +27,26 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      donatorAddress: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      taxReceiptId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      taxReceiptNumber: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      taxReceiptURL: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      hideDonatorName: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,

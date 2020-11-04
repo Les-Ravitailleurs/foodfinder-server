@@ -34,11 +34,14 @@ const getPool = async (req, res) => {
     pool.setDataValue("adminId", undefined);
   }
   const donations = await ServiceDonation.getPoolDonations(poolId);
-  const donationsNames = donations.map((d) => d.name);
+  const donationsNames = donations
+    .filter((d) => d.hideDonatorName === false)
+    .map((d) => d.name);
   if (pool.startAt > 0) {
     donationsNames.unshift(pool.creatorName);
   }
   pool.setDataValue("donationsNames", donationsNames);
+  pool.setDataValue("donationsCount", donations.length);
   res.json(pool);
 };
 

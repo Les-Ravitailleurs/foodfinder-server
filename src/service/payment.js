@@ -1,5 +1,6 @@
 const Config = require("../config");
 const stripe = require("stripe")(Config.STRIPE_SECRET_KEY);
+const uuid = require("uuid");
 
 const createCheckoutSession = async ({
   mealCount,
@@ -7,13 +8,19 @@ const createCheckoutSession = async ({
   email,
   poolId,
   donatorName,
+  donatorAddress,
+  hideDonatorName,
 }) => {
+  const taxReceiptId = uuid.v4();
   const metadata = {
     name,
     email,
     poolId,
     donatorName,
     mealCount,
+    donatorAddress,
+    hideDonatorName,
+    taxReceiptId,
   };
   const checkoutSession = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
@@ -31,8 +38,9 @@ const createCheckoutSession = async ({
     payment_intent_data: {
       metadata,
     },
-    success_url: `${Config.BASE_URL}/collecte/${poolId}/merci/${mealCount}`,
-    cancel_url: `${Config.BASE_URL}/collecte/${poolId}`,
+    success_url: `${Config.BASE_URL}/collecte/merci/${mealCount}?taxReceipt=${taxReceiptId}`,
+    cancel_url: `${Config.BASE_URL}/collecte/`,
+    submit_type: "donate",
   });
   return { checkoutSessionId: checkoutSession.id };
 };

@@ -11,6 +11,7 @@ const webhook = async (req, res) => {
     await ServiceDonation.createDonation(checkoutObject);
     res.send({});
   } catch (e) {
+    console.log(e);
     logger.error("[STRIPE WEBHOOK] Wrong signature");
     res.status(500).send({ message: "Invalid signature" });
   }

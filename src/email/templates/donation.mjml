@@ -8,22 +8,23 @@
   <mj-body background-color="#FFFFFF">
     <mj-section background-color="#FFFFFF" full-width="full-width">
       <mj-column>
-        <mj-image width="200px" src="https://lesravitailleurs.s3.eu-west-3.amazonaws.com/logo.png"></mj-image>
+        <mj-image width="200px" src="https://ravitailleurs.s3.eu-west-3.amazonaws.com/logo.png"></mj-image>
       </mj-column>
     </mj-section>
-    <mj-section background-color="#faf8ea" background-url="https://lesravitailleurs.s3.eu-west-3.amazonaws.com/backgroundEmail.png" background-size="cover" background-repeat="no-repeat">
+    <mj-section background-color="#faf8ea" background-url="https://ravitailleurs.s3.eu-west-3.amazonaws.com/backgroundEmail.png" background-size="cover" background-repeat="no-repeat">
       <mj-column>
 
 
 
-        <mj-text font-size="23px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="40px">Merci pour eux.</mj-text>
+        <mj-text font-size="23px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="40px">Merci&nbsp;!</mj-text>
 
         <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" font-weight="600" padding-top="30px">__NAME__,</mj-text>
 
-        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px">Vous venez d'offrir __MEAL_COUNT__ repas aux plus démunis.</mj-text>
-        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px">Concrètement, vous venez d'acheter __PACKAGING_COUNT__ packagings, __BASE_COUNT__ kg de pâtes ou riz, __GREEN_COUNT__ kg de légumes, les Ravitailleurs bénévoles vont transporter ces produits vers les chefs, qui pourront cuisiner des repas. Ils
+        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px">Grâce à vous, nous allons pouvoir fournir __MEAL_COUNT__ repas à ceux qui en ont le plus besoin.</mj-text>
+        <!--<mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px">Concrètement, vous venez d'acheter __PACKAGING_COUNT__ packagings, __BASE_COUNT__ kg de pâtes ou riz, __GREEN_COUNT__ kg de légumes, les Ravitailleurs bénévoles vont transporter ces produits vers les chefs, qui pourront cuisiner des repas. Ils
           seront ensuite acheminés vers les associations.
-        </mj-text>
+        </mj-text>-->
+
 
 
 
@@ -32,12 +33,12 @@
 
     <mj-section background-color="#faf8ea" border-radius="14px" css-class="box-shadow">
       <mj-column background-color="white" width="90%">
-        <mj-text font-size="18px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" align="center" padding-top="30px">Partagez la collecte de __POOL_CREATOR_NAME__ à vos proches</mj-text>
+        <mj-text font-size="18px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" align="center" padding-top="30px">Partagez la collecte des Ravitailleurs à vos proches</mj-text>
         <mj-table align="center" padding-bottom="30px">
           <tr style="height: 45px">
             <th class="url-filler"></th>
             <th style="width:20px;border-left: 1px solid #EBEBEB; border-top: 1px solid #EBEBEB; border-bottom: 1px solid #EBEBEB;">
-              <img height="auto" src="https://lesravitailleurs.s3.eu-west-3.amazonaws.com/link.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:18px;font-size:13px; margin-left:10px;" />
+              <img height="auto" src="https://ravitailleurs.s3.eu-west-3.amazonaws.com/link.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:18px;font-size:13px; margin-left:10px;" />
             </th>
             <th style="padding: 0 15px; text-align:left;font-family: Arial;color: black; opacity: 0.6;;border-right: 1px solid #EBEBEB; border-top: 1px solid #EBEBEB; border-bottom: 1px solid #EBEBEB;
 "><a rel="nofollow" class="link" style='font-family: Arial;color: black;text-decoration: none;'>__LINK__</a></th>
@@ -46,7 +47,7 @@
         </mj-table>
       </mj-column>
     </mj-section>
-    <mj-section background-color="#faf8ea">
+    <!-- <mj-section background-color="#faf8ea">
       <mj-column>
         <mj-text font-size="18px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="10px" align="center">Vous aussi, créez votre collecte en 1 clic</mj-text>
         <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px">Le don que vous venez de faire sera comptabilisé dans cette nouvelle collecte. Proposez à vos collègues, amis, proches d'offrir des repas aux plus démunis.
@@ -55,7 +56,7 @@
           Je crée une collecte
         </mj-button>
       </mj-column>
-    </mj-section>
+    </mj-section> -->
     <mj-section background-color="#faf8ea">
       <mj-column>
         <mj-text font-size="14px" color="#9f9e96" font-family="Arial, sans-serif" align="center" padding-top="10px" align="center">Vous recevez cet email car vous avez offert un repas sur<br/>sur notre site internet.</mj-text>

@@ -26,7 +26,7 @@ const getEmailSubject = (templateName, data) => {
   }
 };
 
-const sendEmail = async (templateName, to, data) => {
+const sendEmail = async (templateName, to, data, attachment) => {
   const template = await getEmailTemplate(templateName);
   let { html, errors } = mjml2html(template);
   if (errors.length > 0) {
@@ -36,27 +36,33 @@ const sendEmail = async (templateName, to, data) => {
     html = html.replace(new RegExp(dataName, "g"), data[dataName]);
   }
   const subject = getEmailSubject(templateName, data);
+  const messages = [
+    {
+      From: {
+        Email: "contact@lesravitailleurs.org",
+        Name: "Les Ravitailleurs",
+      },
+      To: [
+        {
+          Email: to,
+        },
+      ],
+      Subject: subject,
+      HTMLPart: html,
+    },
+  ];
+
+  if (attachment) {
+    messages[0].Attachments = [attachment];
+  }
 
   try {
     await mailjet.post("send", { version: "v3.1" }).request({
-      Messages: [
-        {
-          From: {
-            Email: "contact@lesravitailleurs.org",
-            Name: "Les Ravitailleurs",
-          },
-          To: [
-            {
-              Email: to,
-            },
-          ],
-          Subject: subject,
-          HTMLPart: html,
-        },
-      ],
+      Messages: messages,
     });
     logger.info(`Sent Email "${templateName}" to ${to}`);
   } catch (err) {
+    console.log("IN HERE ERROR", err, JSON.stringify(err));
     logger.error(
       err,
       err && err.response && err.response.body && err.response.body.errors
