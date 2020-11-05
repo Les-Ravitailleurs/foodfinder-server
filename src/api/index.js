@@ -34,7 +34,7 @@ const launchAPI = () => {
       let pool = null;
       // const regex1 = new RegExp("/collecte/(.*?)/");
       // const regex2 = new RegExp("/collecte/(.*?)(\\?|$)");
-      if (req.url.startsWith("/collecte/")) {
+      if (req.url.startsWith("/collecte")) {
         // const match1 = req.url.match(regex1);
         // if (match1) {
         //   poolId = match1[1];
@@ -73,7 +73,7 @@ const launchAPI = () => {
 
             data = data.replace(
               `<meta property="og:url" content="https://lesravitailleurs.org/"/>`,
-              `<meta property="og:url" content="${Config.BASE_URL}/collecte/"/>`
+              `<meta property="og:url" content="${Config.BASE_URL}/collecte"/>`
             );
 
             // const newDescription = `Les plus démunis ont besoin, aujourd’hui plus que jamais, d’aide alimentaire. ${entities.encode(
@@ -81,7 +81,6 @@ const launchAPI = () => {
             // )} a créé une collecte pour aider Les Ravitailleurs à cuisiner des milliers de repas pour eux.`;
             const newDescription =
               "Aidez les plus démunis, alimentez la grosse collecte.";
-
             data = data.replace(
               `<meta property="og:description" content="Aidez-nous à cuisiner des milliers de repas pour les plus démunis. Des milliers de personnes, en France, ne peuvent plus se nourrir au quotidien. Vous pouvez aider."/>`,
               `<meta property="og:description" content="${newDescription}"/>`
