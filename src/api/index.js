@@ -93,7 +93,7 @@ const launchAPI = () => {
 
             if (pool.shareImage) {
               data = data.replace(
-                `https://lesravitailleurs.s3.eu-west-3.amazonaws.com/ravitailleursShare.jpg`,
+                `https://ravitailleurs.s3.eu-west-3.amazonaws.com/ravitailleursShare.jpg`,
                 pool.shareImage
               );
             }
