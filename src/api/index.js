@@ -32,18 +32,19 @@ const launchAPI = () => {
     app.all("*", async (req, res) => {
       let poolId = null;
       let pool = null;
-      const regex1 = new RegExp("/collecte/(.*?)/");
-      const regex2 = new RegExp("/collecte/(.*?)(\\?|$)");
+      // const regex1 = new RegExp("/collecte/(.*?)/");
+      // const regex2 = new RegExp("/collecte/(.*?)(\\?|$)");
       if (req.url.startsWith("/collecte/")) {
-        const match1 = req.url.match(regex1);
-        if (match1) {
-          poolId = match1[1];
-        } else {
-          const match2 = req.url.match(regex2);
-          if (match2) {
-            poolId = match2[1];
-          }
-        }
+        // const match1 = req.url.match(regex1);
+        // if (match1) {
+        //   poolId = match1[1];
+        // } else {
+        //   const match2 = req.url.match(regex2);
+        //   if (match2) {
+        //     poolId = match2[1];
+        //   }
+        // }
+        poolId = "ravitailleurs";
       }
       if (poolId) {
         // Let's get title from pool name
