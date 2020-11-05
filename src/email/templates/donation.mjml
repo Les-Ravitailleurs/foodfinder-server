@@ -20,7 +20,7 @@
 
         <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" font-weight="600" padding-top="30px">__NAME__,</mj-text>
 
-        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px">Grâce à vous, nous allons pouvoir fournir __MEAL_COUNT__ repas à ceux qui en ont le plus besoin.</mj-text>
+        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px">Grâce à vous, les restaurateurs partenaires pourront cuisiner __MEAL_COUNT__ repas à ceux qui en ont le plus besoin. Vous trouverez votre reçu fiscal en pièce jointe de cet email.</mj-text>
         <!--<mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px">Concrètement, vous venez d'acheter __PACKAGING_COUNT__ packagings, __BASE_COUNT__ kg de pâtes ou riz, __GREEN_COUNT__ kg de légumes, les Ravitailleurs bénévoles vont transporter ces produits vers les chefs, qui pourront cuisiner des repas. Ils
           seront ensuite acheminés vers les associations.
         </mj-text>-->
