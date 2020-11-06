@@ -68,6 +68,7 @@ const generateTaxReceiptAndUpload = ({
           Body: fs.readFileSync(pdfPath),
           ContentType: "application/pdf",
           ACL: "public-read",
+          ContentDisposition: `attachment; filename ="${taxReceiptNumber} Recu Fiscal Les Ravitailleurs.pdf"`,
         };
         s3.upload(S3Params, function (err, data) {
           if (err) {
