@@ -51,6 +51,18 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      volunteerId: {
+        type: Sequelize.STRING(21),
+        reference: {
+          model: "volunteers",
+          key: "id",
+        },
+        allowNull: true,
+      },
+      likeCount: {
+        type: Sequelize.BIGINT,
+        allowNull: true,
+      },
     },
     {
       tableName: "donations",

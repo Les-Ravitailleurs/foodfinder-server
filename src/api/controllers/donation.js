@@ -11,6 +11,7 @@ const donate = async (req, res) => {
     hideDonatorName: Joi.bool(),
     mealCount: Joi.number().integer().required(),
     poolId: Joi.string().required(),
+    volunteerId: Joi.string(),
   });
   const { value, error } = schema.validate(req.body);
 

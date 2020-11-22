@@ -1,0 +1,58 @@
+<mjml>
+  <mj-head>
+    <mj-style>
+      .box-shadow { box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08); } .url-filler {width: 50px} @media (max-width:480px) { .url-filler {width: 0px} }
+    </mj-style>
+
+  </mj-head>
+  <mj-body background-color="#FFFFFF">
+    <mj-section background-color="#FFFFFF" full-width="full-width">
+      <mj-column>
+        <mj-image width="200px" src="https://lesravitailleurs.s3.eu-west-3.amazonaws.com/logo.png"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#faf8ea" background-url="https://lesravitailleurs.s3.eu-west-3.amazonaws.com/backgroundEmail.png" background-size="cover" background-repeat="no-repeat">
+      <mj-column>
+
+
+
+        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" font-weight="600" padding-top="30px">__NAME__,</mj-text>
+
+        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px">Bravo ! Ton lien vers la collecte Ravitailleurs a bien été créé. Tu trouveras en bas de cet email le lien à partager. N’hésite pas à répondre à cet email si tu as des questions&nbsp;!
+        </mj-text>
+
+        <mj-text font-size="18px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="40px">Accédez à votre tableau de bord&nbsp;:</mj-text>
+
+        <mj-button background-color="#11782E" color="white" font-family="Arial, sans-serif" border-radius="8px" href="__DASHBOARD_LINK__" font-weight="600" font-size="16px" padding-top="30px" height="45px">
+          Tableau de bord
+        </mj-button>
+
+      </mj-column>
+    </mj-section>
+
+    <mj-section background-color="#faf8ea">
+      <mj-column width="90%" background-color="white" border-radius="14px" css-class="box-shadow">
+        <mj-text font-size="18px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="30px" align="center">Partagez votre lien en le copiant ici</mj-text>
+        <mj-table align="center" padding-bottom="30px">
+          <tr style="height: 45px">
+            <th class="url-filler"></th>
+            <th style="width:20px;border-left: 1px solid #EBEBEB; border-top: 1px solid #EBEBEB; border-bottom: 1px solid #EBEBEB;">
+              <img height="auto" src="https://lesravitailleurs.s3.eu-west-3.amazonaws.com/link.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:18px;font-size:13px; margin-left:10px;" />
+            </th>
+            <th style="padding: 0 15px; text-align:left;font-family: Arial;color: black; opacity: 0.6;;border-right: 1px solid #EBEBEB; border-top: 1px solid #EBEBEB; border-bottom: 1px solid #EBEBEB;
+">
+              <a rel="nofollow" class="link" style='font-family: Arial;color: black;text-decoration: none;'>__LINK__</a>
+            </th>
+            <th class="url-filler"></th>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#faf8ea">
+      <mj-column>
+        <mj-text font-size="14px" color="#9f9e96" font-family="Arial, sans-serif" align="center" padding-top="10px" align="center">Vous recevez cet email car vous avez créé un lien de collecte.</mj-text>
+        <mj-text font-size="14px" font-weight="bold" color="#9f9e96" font-family="Arial, sans-serif" align="center" padding-top="10px" align="center">Merci. Chaque repas compte.</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

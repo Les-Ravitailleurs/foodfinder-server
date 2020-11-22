@@ -21,8 +21,30 @@ const getEmailSubject = (templateName, data) => {
     case "donation_admin":
       return `${data.__DONATOR_NAME__} vient d'offrir des repas dans votre collecte`;
 
+    case "donation_volunteer":
+      return `${data.__DONATOR_NAME__} vient d'offrir des repas grâce à votre lien`;
+    case "volunteer_link":
+      return `${data.__NAME__}, ton lien Ravitailleurs a bien été créé`;
+
     default:
       throw new Error("EMAIL SUBJECT NOT FOUND");
+  }
+};
+
+const getEmailFrom = (templateName) => {
+  switch (templateName) {
+    case "volunteer_link": {
+      return {
+        Email: "delphine.aim@lesravitailleurs.org",
+        Name: "Delphine des Ravitailleurs",
+      };
+    }
+    default: {
+      return {
+        Email: "contact@lesravitailleurs.org",
+        Name: "Les Ravitailleurs",
+      };
+    }
   }
 };
 
@@ -38,10 +60,7 @@ const sendEmail = async (templateName, to, data, attachment) => {
   const subject = getEmailSubject(templateName, data);
   const messages = [
     {
-      From: {
-        Email: "contact@lesravitailleurs.org",
-        Name: "Les Ravitailleurs",
-      },
+      From: getEmailFrom(templateName),
       To: [
         {
           Email: to,

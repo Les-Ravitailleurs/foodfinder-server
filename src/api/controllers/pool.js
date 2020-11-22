@@ -2,6 +2,7 @@ const Joi = require("@hapi/joi");
 
 const ServicePool = require("../../service/pool");
 const ServiceDonation = require("../../service/donation");
+const ServiceVolunteer = require("../../service/donationVolunteer");
 
 const createOrEditPool = async (req, res) => {
   const schema = Joi.object({
@@ -24,7 +25,7 @@ const createOrEditPool = async (req, res) => {
 
 const getPool = async (req, res) => {
   const { poolId } = req.params;
-  const { adminId } = req.query;
+  const { adminId, volunteer: volunteerUsername } = req.query;
   const pool = await ServicePool.getPool(poolId, true);
   if (!pool) return res.status(404).json({ error: "Pool not found" });
   if (pool.adminId === adminId) {
@@ -32,6 +33,12 @@ const getPool = async (req, res) => {
   } else {
     pool.setDataValue("admin", false);
     pool.setDataValue("adminId", undefined);
+  }
+  if (volunteerUsername) {
+    const volunteer = await ServiceVolunteer.getVolunteerByUsername(
+      volunteerUsername
+    );
+    pool.setDataValue("volunteer", volunteer);
   }
   const donations = await ServiceDonation.getPoolDonations(poolId);
   const donationsNames = donations

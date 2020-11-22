@@ -3,6 +3,7 @@ const logger = require("../logger");
 const { Donation, SavedEmail, sequelize } = require("../db");
 const { sendEmail } = require("../email/email");
 const ServicePool = require("./pool");
+const ServiceDonationVolunteer = require("./donationVolunteer");
 const ServiceTaxReceipt = require("./taxReceipt/index");
 const moment = require("moment-timezone");
 
@@ -21,6 +22,7 @@ const createDonation = async ({
     donatorAddress,
     hideDonatorName,
     taxReceiptId,
+    volunteerId,
   } = metadata;
   // Get donator email & name from charge
   const charge = charges.data.find((c) => c.captured === true);
@@ -60,6 +62,7 @@ const createDonation = async ({
     hideDonatorName,
     taxReceiptId,
     taxReceiptNumber,
+    volunteerId,
   });
 
   logger.info(
@@ -96,6 +99,29 @@ const createDonation = async ({
       Base64Content: taxReceiptBase64,
     }
   );
+  // If donation has a volunteer, send email
+  if (volunteerId) {
+    const volunteer = await ServiceDonationVolunteer.getVolunteerById(
+      volunteerId
+    );
+    if (volunteer) {
+      const volunteerDonationsTotal = await ServiceDonationVolunteer.getDonationsById(
+        volunteerId
+      );
+      sendEmail("donation_volunteer", volunteer.email, {
+        __VOLUNTEER_NAME__: volunteer.name,
+        __TOTAL_MEAL_COUNT__:
+          parseInt(pool.getDataValue("mealCount")) +
+          pool.startAt +
+          parseInt(mealCount),
+        __MEAL_COUNT__: mealCount,
+        __DONATOR_NAME__: donatorName,
+        __TOTAL_VOLUNTEER_MEAL_COUNT__: volunteerDonationsTotal,
+        __LINK__: `${Config.BASE_URL}/collecte/?rav=${volunteer.username}`,
+        __DASHBOARD_LINK__: `${Config.BASE_URL}/dashboard?token=${volunteerId}`,
+      });
+    }
+  }
   // sendEmail("donation_admin", pool.creatorEmail, {
   //   __DONATOR_NAME__: donatorName,
   //   __TOTAL_MEAL_COUNT__:

@@ -10,6 +10,7 @@ const createCheckoutSession = async ({
   donatorName,
   donatorAddress,
   hideDonatorName,
+  volunteerId,
 }) => {
   const taxReceiptId = uuid.v4();
   const metadata = {
@@ -21,6 +22,7 @@ const createCheckoutSession = async ({
     donatorAddress,
     hideDonatorName,
     taxReceiptId,
+    volunteerId,
   };
   const checkoutSession = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
