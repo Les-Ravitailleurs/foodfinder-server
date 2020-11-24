@@ -20,9 +20,9 @@
       </mj-column>
       <mj-column width="40%" background-color="#fff7ae" border-radius="10px">
 
-        <mj-text font-size="12px" color="#181818" font-family="Arial, sans-serif" align="center" font-weight="600" padding-top="20px" padding-bottom="0px">Repas collectés
+        <mj-text font-size="12px" color="#181818" font-family="Arial, sans-serif" align="center" font-weight="600" padding-top="20px" padding-bottom="0px">Nouveaux repas collectés
         </mj-text>
-        <mj-text font-size="40px" color="#181818" font-family="Times New Roman, serif" align="center" font-weight="600" padding-bottom="20px">__TOTAL_MEAL_COUNT__
+        <mj-text font-size="40px" color="#181818" font-family="Times New Roman, serif" align="center" font-weight="600" padding-bottom="20px">__MEAL_COUNT__
         </mj-text>
 
       </mj-column>

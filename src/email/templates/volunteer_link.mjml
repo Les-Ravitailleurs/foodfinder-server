@@ -18,7 +18,7 @@
 
         <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" font-weight="600" padding-top="30px">__NAME__,</mj-text>
 
-        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px">Bravo ! Ton lien vers la collecte Ravitailleurs a bien été créé. Tu trouveras en bas de cet email le lien à partager. N’hésite pas à répondre à cet email si tu as des questions&nbsp;!
+        <mj-text font-size="14px" color="#181818" font-family="Arial, sans-serif" align="center" padding-top="20px" line-height="22px">Bravo ! Votre lien vers la collecte Ravitailleurs a bien été créé. Vous trouverez en bas de cet email le lien à partager. N’hésitez pas à répondre à cet email si vous avez des questions&nbsp;!
         </mj-text>
 
         <mj-text font-size="18px" font-weight="bold" color="#181818" font-family="Times New Roman, serif" align="center" padding-top="40px">Accédez à votre tableau de bord&nbsp;:</mj-text>
