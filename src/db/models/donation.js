@@ -25,19 +25,19 @@ module.exports = (sequelize, Sequelize) => {
       },
       stripeName: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       donatorAddress: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       taxReceiptId: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       taxReceiptNumber: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       taxReceiptURL: {
         type: Sequelize.STRING,
@@ -49,7 +49,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       volunteerId: {
         type: Sequelize.STRING(21),
