@@ -1,4 +1,4 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize, Op } = require("sequelize");
 
 const logger = require("../logger");
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE } = require("../config");
@@ -14,11 +14,16 @@ const sequelize = new Sequelize(DB_DATABASE, DB_USER, DB_PASSWORD, {
   logging: (msg) => logger.debug(`[Sequelize] ${msg}`),
 });
 
-module.exports = {
+const db = {
   sequelize,
   Sequelize,
+  Op,
   Pool: buildPool(sequelize, Sequelize),
   Donation: buildDonation(sequelize, Sequelize),
   SavedEmail: buildSavedEmail(sequelize, Sequelize),
   Volunteer: buildVolunteer(sequelize, Sequelize),
 };
+
+db.Donation.belongsTo(db.Volunteer, { foreignKey: "volunteerId" });
+
+module.exports = db;
