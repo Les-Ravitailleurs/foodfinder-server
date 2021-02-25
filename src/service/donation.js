@@ -1,6 +1,6 @@
 const Config = require("../config");
 const logger = require("../logger");
-const { Donation, SavedEmail, sequelize } = require("../db");
+const { Donation, SavedEmail, sequelize, Op } = require("../db");
 const { sendEmail } = require("../email/email");
 const ServicePool = require("./pool");
 const ServiceDonationVolunteer = require("./donationVolunteer");
@@ -142,7 +142,10 @@ const getDonation = async ({ donationId }) => {
 };
 
 const getPoolDonations = async (poolId) =>
-  Donation.findAll({ where: { poolId }, order: [["createdAt", "ASC"]] });
+  Donation.findAll({
+    where: { poolId, createdAt: { [Op.gt]: "2020-12-31 23:59:59" } },
+    order: [["createdAt", "ASC"]],
+  });
 
 const getDonatorCount = () =>
   Donation.aggregate("email", "count", { distinct: true });

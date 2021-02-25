@@ -1,7 +1,7 @@
 const slugify = require("slugify");
 const Config = require("../config");
 const { nanoid } = require("nanoid");
-const { Pool, Donation, Sequelize } = require("../db");
+const { Pool, Donation, Sequelize, Op } = require("../db");
 const { sendEmail } = require("../email/email");
 
 const findIdForPool = async (creatorName) => {
@@ -65,10 +65,12 @@ const createOrEditPool = async ({
 const getPool = async (poolId, admin = false) => {
   const pool = await Pool.findByPk(poolId);
   if (!pool) return null;
+
   const mealCount = await Donation.sum("mealCount", {
-    where: { poolId: pool.id },
+    where: { poolId: pool.id, createdAt: { [Op.gt]: "2020-12-31 23:59:59" } },
   });
-  pool.setDataValue("mealCount", Number.isNaN(mealCount) ? 0 : mealCount);
+  const mealCountInitial = Number.isNaN(mealCount) ? 0 : mealCount;
+  pool.setDataValue("mealCount", mealCountInitial + 8125);
   if (!admin) pool.setDataValue("adminId", undefined);
   return pool;
 };
