@@ -41,7 +41,7 @@ const getPool = async (req, res) => {
     pool.setDataValue("volunteer", volunteer);
   }
   const allDonations = await ServiceDonation.getPoolDonations(poolId);
-  const recentDonations = await ServiceDonation.getPoolDonations(poolId, true);
+  const recentDonations = await ServiceDonation.getRecentPoolDonations(poolId);
   const donationsNames = allDonations
     .filter((d) => d.hideDonatorName === false)
     .map((d) => d.name);
