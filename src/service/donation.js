@@ -141,11 +141,16 @@ const getDonation = async ({ donationId }) => {
   return donation;
 };
 
-const getPoolDonations = async (poolId) =>
+const getPoolDonations = async (poolId, recent = false) => {
+  const where = { poolId };
+  if (recent) {
+    where.createdAt = { [Op.gt]: "2020-12-31 23:59:59" };
+  }
   Donation.findAll({
-    where: { poolId, createdAt: { [Op.gt]: "2020-12-31 23:59:59" } },
+    where,
     order: [["createdAt", "ASC"]],
   });
+};
 
 const getDonatorCount = () =>
   Donation.aggregate("email", "count", { distinct: true });

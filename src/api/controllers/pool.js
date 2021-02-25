@@ -40,15 +40,16 @@ const getPool = async (req, res) => {
     );
     pool.setDataValue("volunteer", volunteer);
   }
-  const donations = await ServiceDonation.getPoolDonations(poolId);
-  const donationsNames = donations
+  const allDonations = await ServiceDonation.getPoolDonations(poolId);
+  const recentDonations = await ServiceDonation.getPoolDonations(poolId, true);
+  const donationsNames = allDonations
     .filter((d) => d.hideDonatorName === false)
     .map((d) => d.name);
   if (pool.startAt > 0) {
     donationsNames.unshift(pool.creatorName);
   }
   pool.setDataValue("donationsNames", donationsNames);
-  pool.setDataValue("donationsCount", donations.length);
+  pool.setDataValue("donationsCount", recentDonations.length);
   res.json(pool);
 };
 
