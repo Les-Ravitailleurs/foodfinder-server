@@ -16,7 +16,7 @@
     "mjml": "^4.6.2",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.31",
-    "nanoid": "^3.1.3",
+    "nanoid": "^3.1.31",
     "node-mailjet": "^3.3.1",
     "papaparse": "^5.2.0",
     "pg": "^8.2.1",
